@@ -2,7 +2,7 @@ FROM openjdk:8
 
 WORKDIR /roundRobin/bin
 
-ENV PORT 4567
+ENV PORT 6000
 
 COPY /target/classes /roundRobin/bin/classes
 COPY /target/dependency /roundRobin/bin/dependency
