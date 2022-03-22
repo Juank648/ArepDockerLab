@@ -7,7 +7,7 @@ import java.io.IOException;
 public class HTTPClient {
     private OkHttpClient httpClient;
     private String baseUrl="http://127.0.0.1";
-    private String[] ports={":6001", ":6002", ":6003",};
+    private String[] ports={":8001", ":8002", ":8003",};
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private int serverNumber=0;
 

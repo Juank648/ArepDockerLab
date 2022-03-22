@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+
+  loadbalancer:
+    build:
+      context: ./roundRobin
+      dockerfile: Dockerfile
+    depends_on:
+      - web
+    container_name: roundRobin
+
+    ports:
+    - "8000:6000"
+  web:
+    build:
+      context: ./logService
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+
+    ports:
+    - "8001-8003:6000"
+  db:
+    image: mongo:latest
+    container_name: db
+    environment:
+      MONGO_INITDB_DATABASE: ArepLab5
+      MONGO_INITDB_ROOT_USERNAME: Juank648
+      MONGO_INITDB_ROOT_PASSWORD: pwtqXPYKf48Tn
+    volumes:
+    - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    - mongodb:/data/db
+    - mongodb_config:/data/configdb
+    ports:
+    - 27017:27017
+    command: mongod
+volumes:
+  mongodb:
+  mongodb_config:
