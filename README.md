@@ -42,11 +42,48 @@ docker build --tag roundrobin .
 
 ![img 1](Images/1.png)
 
-podemos observar que efectivamente se ha creado usando el comando
+Podemos observar que efectivamente se ha creado usando el comando
 ```
 docker images
 ```
 ![img 1](Images/2.png)
+
+5. Ejecutamos lo siguiente para correr el contenedor
+
+```
+docker run -d -p 8000:6000 --name loadbalancer roundrobin
+```
+Comprobamos que efectivamente se encuentra activo con:
+```
+docker ps
+```
+![img 1](Images/3.png)
+
+6. Volvemos a la carpeta raiz usando:
+
+```
+cd ..
+```
+7. Accedemos a la carpeta de LogService
+
+```
+cd .LogService
+```
+8. Repetimos el paso No. 3 pero ahora creando la imagen de LogService
+
+![img 1](Images/4.png)
+![img 1](Images/5.png)
+
+9. Procedemos a correr esta imagen en tres puertos diferentes
+
+```
+docker run -d -p 8001:6000 --name logservice1 logservice
+docker run -d -p 8002:6000 --name logservice2 logservice
+docker run -d -p 8003:6000 --name logservice3 logservice
+```
+
+
+
 
 
 
