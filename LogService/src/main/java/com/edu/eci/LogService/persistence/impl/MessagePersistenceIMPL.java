@@ -11,6 +11,7 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MessagePersistenceIMPL implements MessagePersistence {
 
@@ -23,7 +24,8 @@ public class MessagePersistenceIMPL implements MessagePersistence {
         MongoCollection<Document> collection =database.getCollection("message");
         System.out.println("Se obtiene conexion");
         Document document=new Document();
-        document.put("msg",message.getMessage());
+        document.put("msgContent",message.getMsgContent());
+        document.put("date", message.getDate());
         collection.insertOne(document);
     }
 
@@ -37,8 +39,9 @@ public class MessagePersistenceIMPL implements MessagePersistence {
         fit.into(docs);
 
         for (Document document:docs) {
-            String mensaje= (String) document.get("msg");
-            messages.add(new Message(mensaje));
+            String mensaje= (String) document.get("msgContent");
+            Date date= (Date) document.get("date");
+            messages.add(new Message(mensaje, date));
         }
 
         return messages;
