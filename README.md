@@ -40,7 +40,13 @@ docker build --tag roundrobin .
 
 4. Obtenemos lo siguiente
 
-![Img 1](images/1.png)
+![img 1](Images/1.png)
+
+podemos observar que efectivamente se ha creado usando el comando
+```
+docker images
+```
+![img 1](Images/2.png)
 
 
 
